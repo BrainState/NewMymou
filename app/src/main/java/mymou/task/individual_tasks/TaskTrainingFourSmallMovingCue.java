@@ -112,8 +112,19 @@ public class TaskTrainingFourSmallMovingCue extends Task {
     }
 
     private void positionCue() {
-        int x_loc = (int) (r.nextFloat() * x_range);
-        int y_loc = (int) (r.nextFloat() * y_range);
+
+        int x_loc, y_loc;
+//        if (prefManager.fixedLoc) {
+        if (prefManager.fixedLoc) {
+            x_loc = (int) (0.01 * prefManager.xCoordinate * x_range);
+            y_loc = (int) (0.01 * prefManager.yCoordinate * y_range);
+        } else {
+            x_loc = (int) (r.nextFloat() * x_range);
+            y_loc = (int) (r.nextFloat() * y_range);
+        }
+
+//        int x_loc = (int) (r.nextFloat() * x_range);
+//        int y_loc = (int) (r.nextFloat() * y_range);
 
         logEvent("Moving cue to "+x_loc+" "+y_loc, callback);
 

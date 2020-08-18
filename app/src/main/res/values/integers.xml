@@ -57,6 +57,9 @@
 
     <integer name="default_random_reward_start">20</integer>
     <integer name="default_random_reward_stop">40</integer>
+    <integer name="default_fixedLocXCoordinate">50</integer>
+    <integer name="default_fixedLocYCoordinate">50</integer>
+    <integer name="default_shrinkScaling">10</integer>
 
     <integer name="default_sl_map_selected">0</integer>
     <integer name="default_sl_seq_length">7</integer>
@@ -99,7 +102,6 @@
     <integer name="default_rdm_color_bg">1</integer>
     <integer name="default_rdm_color_dots">0</integer>
     <integer name="default_rdm_color_choice">1</integer>
-    <integer name="shrinkScaling">10</integer>
 
 
 </resources>

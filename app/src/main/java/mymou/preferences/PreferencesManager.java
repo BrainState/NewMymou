@@ -18,7 +18,7 @@ public class PreferencesManager {
     public String data_headers = "taskId, trialCounter, faceRecogPrediction, overallTrialOutcome, photoTimestamp, eventTimestamp, task manager code, task specific event codes";
 
     public static boolean debug, bluetooth, camera, facerecog, savefacerecogarrays, restartoncrash,
-            sound, autostart, autostop, skip_go_cue=false, dimscreen, handle_feedback;
+            sound, autostart, autostop, skip_go_cue=false, dimscreen, handle_feedback, touchPrevention;
     public static int sound_to_play;
     public static int dimscreenlevel, dimscreentime;
     public static int num_reward_chans, default_rew_chan, max_reward_channels;
@@ -110,6 +110,7 @@ public class PreferencesManager {
         ec_trial_prepared = sharedPrefs.getString(r.getString(R.string.preftag_eventcode_trial_prepared), r.getString(R.string.default_eventcode_trial_prepared));
 
         handle_feedback = true; // Default behaviour, individual tasks can adjust this parameter
+        touchPrevention = sharedPrefs.getBoolean(r.getString(R.string.preftag_touchPrevention), r.getBoolean(R.bool.defualt_touchPrevention));
 
     }
 
@@ -213,7 +214,8 @@ public class PreferencesManager {
         dm_max_dist_in_map = 4;
     }
 
-    public int t_one_screen_colour, t_one_num_presses, t_random_reward_start_time,  t_random_reward_stop_time, shrinkScaling;
+    public int t_one_screen_colour, t_one_num_presses, t_random_reward_start_time,  t_random_reward_stop_time, shrinkScaling, xCoordinate, yCoordinate;
+    public boolean fixedLoc;
 
     public void TrainingTasks() {
         int screen_colour = Integer.valueOf(sharedPrefs.getString(r.getString(R.string.preftag_t_one_screen_colour), Integer.toString(r.getInteger(R.integer.default_t_one_screen_colour))));
@@ -222,7 +224,10 @@ public class PreferencesManager {
         t_random_reward_stop_time = sharedPrefs.getInt(r.getString(R.string.preftag_t_random_reward_stop), r.getInteger(R.integer.default_random_reward_stop));
         t_one_num_presses = sharedPrefs.getInt(r.getString(R.string.preftag_t_one_num_presses), r.getInteger(R.integer.default_t_one_num_presses));
         skip_go_cue = sharedPrefs.getBoolean(r.getString(R.string.preftag_skip_go_cue), r.getBoolean(R.bool.default_t_one_skip_go_cue));
-        shrinkScaling = sharedPrefs.getInt(r.getString(R.string.shrinkScaling), r.getInteger(R.integer.shrinkScaling));
+        shrinkScaling = sharedPrefs.getInt(r.getString(R.string.preftag_t_shrinkScaling), r.getInteger(R.integer.default_shrinkScaling));
+        fixedLoc = sharedPrefs.getBoolean(r.getString(R.string.preftag_t_fixedLoc),r.getBoolean(R.bool.default_t_fixedLoc));
+        xCoordinate = sharedPrefs.getInt(r.getString(R.string.preftag_t_fixedLocXCoordinate),r.getInteger(R.integer.default_fixedLocXCoordinate));
+        yCoordinate = sharedPrefs.getInt(r.getString(R.string.preftag_t_fixedLocYCoordinate),r.getInteger(R.integer.default_fixedLocYCoordinate));
 
         // TODO: Get this working
         int t_random_reward_stop_time_ms = t_random_reward_stop_time * 1000;

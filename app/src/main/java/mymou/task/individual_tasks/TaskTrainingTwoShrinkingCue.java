@@ -35,7 +35,7 @@ public class TaskTrainingTwoShrinkingCue extends Task {
     private static int flag_pre_corr=2;
     private static PreferencesManager prefManager;
     private SharedPreferences settings;
-    private final double ratio = 0.1;
+//    private final double ratio = 10;
     private static double scalar=1;
 
     // Task objects
@@ -84,11 +84,11 @@ public class TaskTrainingTwoShrinkingCue extends Task {
 
         if (flag_pre_corr == 1) {
 
-            scalar = scalar*(1-ratio);
+            scalar = scalar*(1-prefManager.shrinkScaling*0.01);
 
         }
         else if (flag_pre_corr == 0){
-            scalar = scalar*(1+ratio);
+            scalar = scalar*(1+prefManager.shrinkScaling*0.01);
         } else  {
             scalar = 1;
         }

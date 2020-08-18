@@ -71,6 +71,11 @@
                 app:key="@string/preftag_sound"
                 app:title="Enable sounds" />
 
+        <SwitchPreferenceCompat
+                android:defaultValue="@bool/defualt_touchPrevention"
+                app:key="@string/preftag_touchPrevention"
+                app:title="Warning in case tap the non-cue"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory

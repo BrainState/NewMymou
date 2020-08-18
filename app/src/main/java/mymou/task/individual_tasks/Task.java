@@ -2,6 +2,8 @@ package mymou.task.individual_tasks;
 
 import android.app.Activity;
 import android.graphics.Point;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceManager;
 import android.view.Display;
 import android.view.View;
 
@@ -45,13 +47,15 @@ public abstract class Task extends Fragment {
     }
 
     public void touchPrevention(View view, TaskInterface callback) {
-        String outcome = PreferencesManager.ec_wrong_gocue_pressed;
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                callback.trialEnded_(outcome, 1);
-            }
-        });
+        if (PreferencesManager.touchPrevention) {
+            String outcome = PreferencesManager.ec_wrong_gocue_pressed;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callback.trialEnded_(outcome, 1);
+                }
+            });
+        }
     }
 
     public void logEvent(String event, TaskInterface callback) {
